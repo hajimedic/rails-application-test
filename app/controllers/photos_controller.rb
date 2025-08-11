@@ -6,11 +6,17 @@ class PhotosController < ApplicationController
   end
 
   def new
-    # 次のステップで実装
+    @photo = current_user.photos.new
   end
 
   def create
-    # 次のステップで実装
+    @photo = current_user.photos.new(photo_params)
+    if @photo.save
+      redirect_to photos_path, notice: "写真をアップロードしました"
+    else
+      flash.now[:alert] = @photo.errors.full_messages.join(" / ")
+      render :new, status: :unprocessable_entity
+    end
   end
 
   private
@@ -19,5 +25,9 @@ class PhotosController < ApplicationController
     return if logged_in?
 
     redirect_to root_path, alert: "ログインが必要です"
+  end
+
+  def photo_params
+    params.require(:photo).permit(:title, :image)
   end
 end

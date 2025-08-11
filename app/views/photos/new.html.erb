@@ -1,0 +1,32 @@
+<% content_for(:title, "写真をアップロード") %>
+<div class="container" style="max-width:720px;margin:24px auto;padding:0 16px;">
+  <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:16px;">
+    <h1 style="margin:0;font-size:22px;">写真をアップロード</h1>
+    <div style="display:flex;gap:8px;">
+      <%= link_to "一覧に戻る", photos_path, style: "background:#6b7280;color:#fff;padding:8px 12px;border-radius:8px;text-decoration:none;" %>
+      <%= link_to "ログアウト", logout_path, data: { turbo_method: :delete, turbo_confirm: "ログアウトしますか？" }, style: "background:#e11d48;color:#fff;padding:8px 12px;border-radius:8px;text-decoration:none;" %>
+    </div>
+  </div>
+
+  <% if flash[:alert].present? %>
+    <div class="alert" style="background:#fde8e8;color:#b91c1c;padding:10px 12px;border-radius:8px;border:1px solid #f8c7c7;margin-bottom:10px;">
+      <%= flash[:alert] %>
+    </div>
+  <% end %>
+
+  <%= form_with model: @photo, url: photos_path, method: :post, local: true, html: { multipart: true } do |f| %>
+    <div style="display:grid;gap:14px;">
+      <div>
+        <label for="photo_title" style="font-size:13px;color:#333;">タイトル</label>
+        <%= f.text_field :title, maxlength: 30, style: "width:100%;box-sizing:border-box;padding:10px 12px;border:1px solid #dcdfe4;border-radius:8px;font-size:16px;" %>
+      </div>
+      <div>
+        <label for="photo_image" style="font-size:13px;color:#333;">画像ファイル</label>
+        <%= f.file_field :image, accept: "image/*", style: "display:block;" %>
+      </div>
+      <div>
+        <button class="btn" type="submit" style="background:#4f46e5;color:#fff;border:none;padding:10px 14px;border-radius:8px;font-size:16px;cursor:pointer;">アップロード</button>
+      </div>
+    </div>
+  <% end %>
+</div>
