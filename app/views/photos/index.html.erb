@@ -4,6 +4,7 @@
     <h1 style="margin:0;font-size:22px;">写真一覧</h1>
     <div style="display:flex;gap:8px;">
       <%= link_to "写真をアップロード", new_photo_path, style: "background:#4f46e5;color:#fff;padding:8px 12px;border-radius:8px;text-decoration:none;" %>
+      <%= link_to "MyTweetAppと連携", oauth_authorize_url, target: "_blank", rel: "noopener", style: "background:#0ea5e9;color:#fff;padding:8px 12px;border-radius:8px;text-decoration:none;" %>
       <%= link_to "ログアウト", logout_path, data: { turbo_method: :delete, turbo_confirm: "ログアウトしますか？" }, style: "background:#e11d48;color:#fff;padding:8px 12px;border-radius:8px;text-decoration:none;" %>
     </div>
   </div>

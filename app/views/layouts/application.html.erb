@@ -20,9 +20,19 @@
     <%# Includes all stylesheet files in app/assets/stylesheets %>
     <%= stylesheet_link_tag :app, "data-turbo-track": "reload" %>
     <%= javascript_importmap_tags %>
+    <style>
+      .flash { max-width: 960px; margin: 12px auto; padding: 10px 12px; border-radius: 8px; }
+      .flash-notice { background: #ecfeff; color: #075985; border: 1px solid #a5f3fc; }
+      .flash-alert { background: #fde8e8; color: #b91c1c; border: 1px solid #f8c7c7; }
+    </style>
   </head>
 
   <body>
+    <% flash.each do |type, message| %>
+      <% css = type.to_s == "notice" ? "flash-notice" : "flash-alert" %>
+      <div class="flash <%= css %>"><%= message %></div>
+    <% end %>
+
     <%= yield %>
   </body>
 </html>
