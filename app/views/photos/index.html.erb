@@ -21,6 +21,11 @@
               <%= image_tag photo.image, style: "width:100%;height:auto;display:block;border-radius:8px;" %>
             </div>
           <% end %>
+          <% if oauth_access_token.present? %>
+            <div style="padding:0 12px 12px;">
+              <%= button_to "ツイートする", tweet_photo_path(photo), method: :post, form: { data: { turbo_confirm: "この画像を連携アプリにツイートしますか？" } }, style: "background:#0ea5e9;color:#fff;padding:8px 12px;border:none;border-radius:8px;text-decoration:none;" %>
+            </div>
+          <% end %>
         </div>
       <% end %>
     </div>

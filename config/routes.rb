@@ -14,7 +14,9 @@ Rails.application.routes.draw do
   post "/login", to: "sessions#create", as: :login
   delete "/logout", to: "sessions#destroy", as: :logout
 
-  resources :photos, only: [ :index, :new, :create ]
+  resources :photos, only: [ :index, :new, :create ] do
+    post :tweet, on: :member
+  end
 
   # OAuth callback (Authorization Code Flow)
   get "/oauth/callback", to: "oauth#callback"
