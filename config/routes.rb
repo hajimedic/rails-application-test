@@ -9,6 +9,11 @@ Rails.application.routes.draw do
   # get "manifest" => "rails/pwa#manifest", as: :pwa_manifest
   # get "service-worker" => "rails/pwa#service_worker", as: :pwa_service_worker
 
-  # Defines the root path route ("/")
-  # root "posts#index"
+  # Sessions (login/logout)
+  root to: "sessions#new"
+  post "/login", to: "sessions#create", as: :login
+  delete "/logout", to: "sessions#destroy", as: :logout
+
+  # Placeholder: photos index (step 2 で実装予定)
+  get "/photos", to: "photos#index", as: :photos
 end
