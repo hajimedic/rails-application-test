@@ -10,7 +10,7 @@
 
 # 初期ユーザー作成
 if defined?(User)
-  user_id = ENV.fetch("user_id", "recruit_56522")
+  user_id = ENV.fetch("user_id", "first_user")
   password = ENV.fetch("user_password", "password")
 
   User.find_or_create_by!(user_id: user_id) do |u|
