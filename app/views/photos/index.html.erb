@@ -1,0 +1,29 @@
+<% content_for(:title, "写真一覧") %>
+<div class="container" style="max-width:960px;margin:24px auto;padding:0 16px;">
+  <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:16px;">
+    <h1 style="margin:0;font-size:22px;">写真一覧</h1>
+    <div style="display:flex;gap:8px;">
+      <%= link_to "写真をアップロード", new_photo_path, style: "background:#4f46e5;color:#fff;padding:8px 12px;border-radius:8px;text-decoration:none;" %>
+      <%= link_to "ログアウト", logout_path, data: { turbo_method: :delete, turbo_confirm: "ログアウトしますか？" }, style: "background:#e11d48;color:#fff;padding:8px 12px;border-radius:8px;text-decoration:none;" %>
+    </div>
+  </div>
+
+  <% if @photos.any? %>
+    <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:16px;">
+      <% @photos.each do |photo| %>
+        <div style="border:1px solid #e5e7eb;border-radius:10px;overflow:hidden;background:#fff;">
+          <div style="padding:12px 12px 0; font-weight:600;">
+            <%= h photo.title %>
+          </div>
+          <% if photo.image.attached? %>
+            <div style="padding:12px;">
+              <%= image_tag photo.image, style: "width:100%;height:auto;display:block;border-radius:8px;" %>
+            </div>
+          <% end %>
+        </div>
+      <% end %>
+    </div>
+  <% else %>
+    <p style="color:#6b7280;">アップロードされた写真はまだありません。</p>
+  <% end %>
+</div>

@@ -2,8 +2,15 @@ class PhotosController < ApplicationController
   before_action :require_login
 
   def index
-    # TODO: 次のステップで写真一覧を実装
-    render plain: "写真一覧（仮）"
+    @photos = current_user.photos.with_attached_image.order(created_at: :desc)
+  end
+
+  def new
+    # 次のステップで実装
+  end
+
+  def create
+    # 次のステップで実装
   end
 
   private

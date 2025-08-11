@@ -14,6 +14,5 @@ Rails.application.routes.draw do
   post "/login", to: "sessions#create", as: :login
   delete "/logout", to: "sessions#destroy", as: :logout
 
-  # Placeholder: photos index (step 2 で実装予定)
-  get "/photos", to: "photos#index", as: :photos
+  resources :photos, only: [:index, :new, :create]
 end
